@@ -1,5 +1,7 @@
 import React from 'react'
+import './styles/App.css'
 import { useState, useEffect } from 'react'
+import { Table } from './components/Table'
 
 const App = () => {
   const [employees, setEmployees] = useState([])
@@ -14,18 +16,19 @@ const App = () => {
     }
     request()
   }, [])
+  const handleDelete = (id) => {
+    //todo: communicate with server about deleting by id.
+    setEmployees((oldEmployees) => {
+      return oldEmployees.filter((employee) => employee.id !== id)
+    })
+  }
   return (
     <div className='App'>
       <h1>Plexxis Employees</h1>
-      {employees.map((employee) => (
-        <div key={employee.id}>
-          {Object.keys(employee).map((key) => (
-            <span key={key}>
-              {key}:{employee[key]}
-            </span>
-          ))}
-        </div>
-      ))}
+
+      <Table employees={employees} handleDelete={handleDelete}></Table>
+
+      <form></form>
     </div>
   )
 }
