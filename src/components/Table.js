@@ -36,7 +36,11 @@ export const Table = ({ employees, handleDelete }) => {
             <td>{employee.branch}</td>
             <td>{employee.assigned ? 'Yes' : 'No'}</td>
             <td>
-              <button type='button' onClick={() => handleDelete(employee.id)}>
+              <button
+                className='delete'
+                type='button'
+                onClick={() => handleDelete(employee.id)}
+              >
                 Del
               </button>
             </td>
