@@ -4,9 +4,11 @@
   "license": "None provided",
   "private": true,
   "dependencies": {
+    "body-parser": "^1.20.2",
     "concurrently": "^3.6.0",
     "cors": "^2.8.4",
     "express": "^4.16.3",
+    "morgan": "^1.10.0",
     "nodemon": "^1.17.5",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",

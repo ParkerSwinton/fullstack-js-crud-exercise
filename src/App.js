@@ -3,8 +3,9 @@ import './styles/App.css'
 import { useState, useEffect } from 'react'
 import { Table } from './components/Table'
 import { Form } from './components/Form'
-let count = 8
+
 const App = () => {
+  const apiUrl = 'http://localhost:8080/api/employees'
   const [employees, setEmployees] = useState([])
   const [newEmployee, setNewEmployee] = useState({
     name: '',
@@ -17,7 +18,6 @@ const App = () => {
 
   useEffect(() => {
     const request = async () => {
-      const apiUrl = 'http://localhost:8080/api/employees'
       const res = await fetch(apiUrl)
       const data = await res.json()
       console.log(data)
@@ -25,13 +25,17 @@ const App = () => {
     }
     request()
   }, [])
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
 
-    // Will replace this with a post request
-    const addNewEmployee = { ...newEmployee }
-    addNewEmployee['id'] = count++
-    addNewEmployee['code'] = 'F107'
+    const res = await fetch(apiUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newEmployee),
+    })
+    const addNewEmployee = await res.json()
 
     setEmployees((currentEmployees) => {
       return [...currentEmployees, addNewEmployee]
@@ -45,8 +49,8 @@ const App = () => {
       assigned: false,
     })
   }
-  const handleDelete = (id) => {
-    //todo: communicate with server about deleting by id.
+  const handleDelete = async (id) => {
+    await fetch(`${apiUrl}/${id}`, { method: 'DELETE' })
     setEmployees((oldEmployees) => {
       return oldEmployees.filter((employee) => employee.id !== id)
     })
@@ -57,8 +61,8 @@ const App = () => {
     const value = target.type === 'checkbox' ? target.checked : target.value
     const name = target.name
 
-    const updateNewEmployee = { ...newEmployee }
-    updateNewEmployee[name] = value
+    const updateNewEmployee = { ...newEmployee, [name]: value }
+
     setNewEmployee(updateNewEmployee)
   }
   return (
