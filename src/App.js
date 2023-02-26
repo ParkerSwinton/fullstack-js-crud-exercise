@@ -5,15 +5,6 @@ import { Table } from './components/Table'
 import { Form } from './components/Form'
 import { Modal } from './components/Modal'
 
-const handleFormChange = (e, updateEmployee, setUpdateEmployee) => {
-  const { target } = e
-  const name = target.name
-  const value = target.type === 'checkbox' ? target.checked : target.value
-
-  const updateNewEmployee = { ...updateEmployee, [name]: value }
-  setUpdateEmployee(updateNewEmployee)
-}
-
 const App = () => {
   const apiUrl = 'http://localhost:8080/api/employees'
   const [employees, setEmployees] = useState([])
@@ -33,6 +24,7 @@ const App = () => {
     branch: '',
     assigned: false,
   })
+
   useEffect(() => {
     const request = async () => {
       const res = await fetch(apiUrl)
@@ -114,14 +106,12 @@ const App = () => {
       <Form
         employee={newEmployee}
         setEmployee={setNewEmployee}
-        handleFormChange={handleFormChange}
         handleSubmit={handleAddSubmit}
       ></Form>
       <Modal>
         <Form
           employee={editEmployee}
           setEmployee={setEditEmployee}
-          handleFormChange={handleFormChange}
           handleSubmit={handleEditSubmit}
         ></Form>
       </Modal>

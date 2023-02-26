@@ -1,11 +1,16 @@
 import React from 'react'
 import { BsCheck } from 'react-icons/bs'
-export const Form = ({
-  employee,
-  setEmployee,
-  handleFormChange,
-  handleSubmit,
-}) => {
+
+const handleFormChange = (e, updateEmployee, setUpdateEmployee) => {
+  const { target } = e
+  const name = target.name
+  const value = target.type === 'checkbox' ? target.checked : target.value
+
+  const updateNewEmployee = { ...updateEmployee, [name]: value }
+  setUpdateEmployee(updateNewEmployee)
+}
+
+export const Form = ({ employee, setEmployee, handleSubmit }) => {
   return (
     <form onSubmit={(e) => handleSubmit(e, employee['id'])}>
       <label>
