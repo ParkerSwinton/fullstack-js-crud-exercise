@@ -72,15 +72,16 @@ input[type=text] {
 .edit:hover {
   box-shadow: 0 0 3px 3px rgba(255, 165, 0, 0.1);
   color: orange;
-  cursor: pointer;
 }
 .delete:hover {
   box-shadow:0 0 3px 3px rgba(255, 0, 0, 0.1);
   color: red;
-  cursor: pointer;
 }
 .add:hover {
   box-shadow: 0 0 3px 3px rgba(0, 128, 0, 0.1);
   color: green;
+}
+.edit:hover,.delete:hover,.add:hover{
+  transform: scale(1.1);
   cursor: pointer;
 }

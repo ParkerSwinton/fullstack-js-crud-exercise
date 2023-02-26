@@ -1,15 +1,20 @@
 import React from 'react'
-import { BsPlus } from 'react-icons/bs'
-export const Form = ({ newEmployee, handleFormChange, handleAddSubmit }) => {
+import { BsCheck } from 'react-icons/bs'
+export const Form = ({
+  employee,
+  setEmployee,
+  handleFormChange,
+  handleSubmit,
+}) => {
   return (
-    <form onSubmit={handleAddSubmit}>
+    <form onSubmit={(e) => handleSubmit(e, employee['id'])}>
       <label>
         Name:
         <input
           name='name'
           type='text'
-          value={newEmployee['name']}
-          onChange={handleFormChange}
+          value={employee['name']}
+          onChange={(e) => handleFormChange(e, employee, setEmployee)}
           required
         ></input>
       </label>
@@ -18,8 +23,8 @@ export const Form = ({ newEmployee, handleFormChange, handleAddSubmit }) => {
         <input
           name='profession'
           type='text'
-          value={newEmployee['profession']}
-          onChange={handleFormChange}
+          value={employee['profession']}
+          onChange={(e) => handleFormChange(e, employee, setEmployee)}
           required
         ></input>
       </label>
@@ -28,8 +33,8 @@ export const Form = ({ newEmployee, handleFormChange, handleAddSubmit }) => {
         <input
           name='color'
           type='text'
-          value={newEmployee['color']}
-          onChange={handleFormChange}
+          value={employee['color']}
+          onChange={(e) => handleFormChange(e, employee, setEmployee)}
           required
         ></input>
       </label>
@@ -38,8 +43,8 @@ export const Form = ({ newEmployee, handleFormChange, handleAddSubmit }) => {
         <input
           name='city'
           type='text'
-          value={newEmployee['city']}
-          onChange={handleFormChange}
+          value={employee['city']}
+          onChange={(e) => handleFormChange(e, employee, setEmployee)}
           required
         ></input>
       </label>
@@ -48,8 +53,8 @@ export const Form = ({ newEmployee, handleFormChange, handleAddSubmit }) => {
         <input
           name='branch'
           type='text'
-          value={newEmployee['branch']}
-          onChange={handleFormChange}
+          value={employee['branch']}
+          onChange={(e) => handleFormChange(e, employee, setEmployee)}
           required
         ></input>
       </label>
@@ -58,12 +63,12 @@ export const Form = ({ newEmployee, handleFormChange, handleAddSubmit }) => {
         <input
           name='assigned'
           type='checkbox'
-          checked={newEmployee['assigned']}
-          onChange={handleFormChange}
+          checked={employee['assigned']}
+          onChange={(e) => handleFormChange(e, employee, setEmployee)}
         ></input>
       </label>
       <button type='submit' className='add'>
-        <BsPlus />
+        <BsCheck />
       </button>
     </form>
   )

@@ -1,7 +1,7 @@
 import React from 'react'
 import { BsTrash, BsPencil } from 'react-icons/bs'
 
-export const Table = ({ employees, handleDelete }) => {
+export const Table = ({ employees, handleDelete, handleEdit }) => {
   const headers = [
     'ID',
     'Name',
@@ -38,7 +38,11 @@ export const Table = ({ employees, handleDelete }) => {
             <td>{employee.branch}</td>
             <td>{employee.assigned ? 'Yes' : 'No'}</td>
             <td>
-              <button className='edit' type='button'>
+              <button
+                className='edit'
+                type='button'
+                onClick={() => handleEdit(employee.id)}
+              >
                 <BsPencil />
               </button>
             </td>

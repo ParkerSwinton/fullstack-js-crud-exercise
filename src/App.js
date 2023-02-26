@@ -3,6 +3,7 @@ import './styles/App.css'
 import { useState, useEffect } from 'react'
 import { Table } from './components/Table'
 import { Form } from './components/Form'
+import { Modal } from './components/Modal'
 
 const App = () => {
   const apiUrl = 'http://localhost:8080/api/employees'
@@ -15,17 +16,23 @@ const App = () => {
     branch: '',
     assigned: false,
   })
-
+  const [editEmployee, setEditEmployee] = useState({
+    name: '',
+    profession: '',
+    color: '',
+    city: '',
+    branch: '',
+    assigned: false,
+  })
   useEffect(() => {
     const request = async () => {
       const res = await fetch(apiUrl)
       const data = await res.json()
-      console.log(data)
       setEmployees(data)
     }
     request()
   }, [])
-  const handleAddSubmit = async (e) => {
+  const handleAddSubmit = async (e, id) => {
     e.preventDefault()
 
     const res = await fetch(apiUrl, {
@@ -49,33 +56,74 @@ const App = () => {
       assigned: false,
     })
   }
+  const handleEditSubmit = async (e, id) => {
+    e.preventDefault()
+    const res = await fetch(`${apiUrl}/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(editEmployee),
+    })
+    const editedEmployee = await res.json()
+    const index = employees.findIndex((employee) => employee.id === id)
+    const editedEmployees = employees
+    editedEmployees[index] = editedEmployee
+
+    setEmployees(editedEmployees)
+    setEditEmployee({
+      name: '',
+      profession: '',
+      color: '',
+      city: '',
+      branch: '',
+      assigned: false,
+    })
+    document.getElementById('modal').close()
+  }
   const handleDelete = async (id) => {
     await fetch(`${apiUrl}/${id}`, { method: 'DELETE' })
     setEmployees((oldEmployees) => {
       return oldEmployees.filter((employee) => employee.id !== id)
     })
   }
-  const handleFormChange = (e) => {
+  const handleFormChange = (e, updateEmployee, setUpdateEmployee) => {
     e.preventDefault()
     const { target } = e
     const value = target.type === 'checkbox' ? target.checked : target.value
     const name = target.name
 
-    const updateNewEmployee = { ...newEmployee, [name]: value }
+    const updateNewEmployee = { ...updateEmployee, [name]: value }
+    setUpdateEmployee(updateNewEmployee)
+  }
 
-    setNewEmployee(updateNewEmployee)
+  const handleEdit = (id) => {
+    const tempEmployee = employees.find((employee) => employee.id === id)
+    setEditEmployee(tempEmployee)
+    document.getElementById('modal').showModal()
   }
   return (
     <div className='App'>
       <h1>Plexxis Employees</h1>
 
-      <Table employees={employees} handleDelete={handleDelete}></Table>
+      <Table
+        employees={employees}
+        handleDelete={handleDelete}
+        handleEdit={handleEdit}
+      ></Table>
       <h2>Add a new employee</h2>
       <Form
-        newEmployee={newEmployee}
+        employee={newEmployee}
+        setEmployee={setNewEmployee}
         handleFormChange={handleFormChange}
-        handleAddSubmit={handleAddSubmit}
+        handleSubmit={handleAddSubmit}
       ></Form>
+      <Modal
+        employee={editEmployee}
+        setEmployee={setEditEmployee}
+        handleFormChange={handleFormChange}
+        handleSubmit={handleEditSubmit}
+      ></Modal>
     </div>
   )
 }
