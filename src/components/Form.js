@@ -13,7 +13,7 @@ export const Form = ({
         <input
           name='name'
           type='text'
-          value={employee['name']}
+          value={employee.name}
           onChange={(e) => handleFormChange(e, employee, setEmployee)}
           required
         ></input>
@@ -23,7 +23,7 @@ export const Form = ({
         <input
           name='profession'
           type='text'
-          value={employee['profession']}
+          value={employee.profession}
           onChange={(e) => handleFormChange(e, employee, setEmployee)}
           required
         ></input>
@@ -33,7 +33,7 @@ export const Form = ({
         <input
           name='color'
           type='text'
-          value={employee['color']}
+          value={employee.color}
           onChange={(e) => handleFormChange(e, employee, setEmployee)}
           required
         ></input>
@@ -43,7 +43,7 @@ export const Form = ({
         <input
           name='city'
           type='text'
-          value={employee['city']}
+          value={employee.city}
           onChange={(e) => handleFormChange(e, employee, setEmployee)}
           required
         ></input>
@@ -53,7 +53,7 @@ export const Form = ({
         <input
           name='branch'
           type='text'
-          value={employee['branch']}
+          value={employee.branch}
           onChange={(e) => handleFormChange(e, employee, setEmployee)}
           required
         ></input>
@@ -63,7 +63,7 @@ export const Form = ({
         <input
           name='assigned'
           type='checkbox'
-          checked={employee['assigned']}
+          checked={employee.assigned}
           onChange={(e) => handleFormChange(e, employee, setEmployee)}
         ></input>
       </label>

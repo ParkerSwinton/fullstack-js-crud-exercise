@@ -39,8 +39,8 @@ label {
   font-weight: bold;
   display: flex;
   flex-direction: column;
-  justify-content: left;
-  align-items: left;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 input[type=text] {
   font-size: 18px;
@@ -48,10 +48,24 @@ input[type=text] {
   border:0;
   box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
 }
-/* input[type=checkbox] {
-  justify-self: center;
-} */
-
+input[type=checkbox] {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: white;
+  margin: auto;
+  border: 1px solid lightgrey;
+  box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+}
+input[type=checkbox]:hover {
+  cursor: pointer;
+}
+input[type=checkbox]:checked {
+  background-color: limegreen;
+}
+dialog {
+  padding: 15px;
+}
 .delete, .edit, .add{
   appearance: none;
   border: none;
@@ -68,6 +82,11 @@ input[type=text] {
 .add {
   margin-top: 15px;
   align-self: center;
+}
+.close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
 }
 .edit:hover {
   box-shadow: 0 0 3px 3px rgba(255, 165, 0, 0.1);

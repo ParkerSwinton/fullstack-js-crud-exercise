@@ -5,6 +5,15 @@ import { Table } from './components/Table'
 import { Form } from './components/Form'
 import { Modal } from './components/Modal'
 
+const handleFormChange = (e, updateEmployee, setUpdateEmployee) => {
+  const { target } = e
+  const name = target.name
+  const value = target.type === 'checkbox' ? target.checked : target.value
+
+  const updateNewEmployee = { ...updateEmployee, [name]: value }
+  setUpdateEmployee(updateNewEmployee)
+}
+
 const App = () => {
   const apiUrl = 'http://localhost:8080/api/employees'
   const [employees, setEmployees] = useState([])
@@ -87,16 +96,6 @@ const App = () => {
       return oldEmployees.filter((employee) => employee.id !== id)
     })
   }
-  const handleFormChange = (e, updateEmployee, setUpdateEmployee) => {
-    e.preventDefault()
-    const { target } = e
-    const value = target.type === 'checkbox' ? target.checked : target.value
-    const name = target.name
-
-    const updateNewEmployee = { ...updateEmployee, [name]: value }
-    setUpdateEmployee(updateNewEmployee)
-  }
-
   const handleEdit = (id) => {
     const tempEmployee = employees.find((employee) => employee.id === id)
     setEditEmployee(tempEmployee)
@@ -118,12 +117,14 @@ const App = () => {
         handleFormChange={handleFormChange}
         handleSubmit={handleAddSubmit}
       ></Form>
-      <Modal
-        employee={editEmployee}
-        setEmployee={setEditEmployee}
-        handleFormChange={handleFormChange}
-        handleSubmit={handleEditSubmit}
-      ></Modal>
+      <Modal>
+        <Form
+          employee={editEmployee}
+          setEmployee={setEditEmployee}
+          handleFormChange={handleFormChange}
+          handleSubmit={handleEditSubmit}
+        ></Form>
+      </Modal>
     </div>
   )
 }

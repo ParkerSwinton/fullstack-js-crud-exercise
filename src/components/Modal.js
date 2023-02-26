@@ -1,19 +1,17 @@
 import React from 'react'
-import { Form } from './Form'
-export const Modal = ({
-  employee,
-  setEmployee,
-  handleFormChange,
-  handleSubmit,
-}) => {
+import { BsX } from 'react-icons/bs'
+
+export const Modal = ({ children }) => {
+  const handleClose = () => {
+    document.getElementById('modal').close()
+  }
   return (
     <dialog id='modal'>
-      <Form
-        employee={employee}
-        setEmployee={setEmployee}
-        handleFormChange={handleFormChange}
-        handleSubmit={handleSubmit}
-      ></Form>
+      <button type='button' className='delete close' onClick={handleClose}>
+        <BsX />
+      </button>
+      <h2>Edit Employee</h2>
+      {children}
     </dialog>
   )
 }
