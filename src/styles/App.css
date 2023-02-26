@@ -1,14 +1,14 @@
-h1 {
-  font-size: 24px;
-  padding: 20px;
-  margin: 0;
-}
 .App {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 50px;
+}
+
+h1 {
+  font-size: 28px;
+  padding: 20px;
+  margin: 0;
 }
 
 table {
@@ -17,6 +17,7 @@ table {
   border: 1px solid grey;
   font-size: 18px;
   border-collapse: collapse;
+  margin: 50px 0;
 }
 table thead th {
   color: #777;
@@ -28,8 +29,18 @@ table td {
   border: 1px solid lightgrey;
 }
 
-input {
+form {
+  display: flex;
+  flex-wrap: wrap;
+}
+label {
   margin: 10px;
+  color: #777;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: left;
 }
 input[type=text] {
   font-size: 18px;
@@ -37,13 +48,39 @@ input[type=text] {
   border:0;
   box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
 }
-.delete {
+/* input[type=checkbox] {
+  justify-self: center;
+} */
+
+.delete, .edit, .add{
   appearance: none;
-  background: red;
-  color: white;
+  border: none;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  font-size: 18px;
+  border-radius: 50%;
+  box-shadow:0 0 3px 3px rgba(0, 0, 0, 0.06);
+}
+.add {
+  margin-top: 15px;
+  align-self: center;
+}
+.edit:hover {
+  box-shadow: 0 0 3px 3px rgba(255, 165, 0, 0.1);
+  color: orange;
+  cursor: pointer;
 }
 .delete:hover {
-  background: white;
+  box-shadow:0 0 3px 3px rgba(255, 0, 0, 0.1);
   color: red;
+  cursor: pointer;
+}
+.add:hover {
+  box-shadow: 0 0 3px 3px rgba(0, 128, 0, 0.1);
+  color: green;
   cursor: pointer;
 }

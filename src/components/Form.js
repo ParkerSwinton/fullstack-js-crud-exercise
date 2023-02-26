@@ -1,8 +1,8 @@
 import React from 'react'
-
-export const Form = ({ newEmployee, handleFormChange, handleSubmit }) => {
+import { BsPlus } from 'react-icons/bs'
+export const Form = ({ newEmployee, handleFormChange, handleAddSubmit }) => {
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleAddSubmit}>
       <label>
         Name:
         <input
@@ -62,7 +62,9 @@ export const Form = ({ newEmployee, handleFormChange, handleSubmit }) => {
           onChange={handleFormChange}
         ></input>
       </label>
-      <button type='submit'>Submit</button>
+      <button type='submit' className='add'>
+        <BsPlus />
+      </button>
     </form>
   )
 }

@@ -58,7 +58,7 @@ app.put('/api/employees/:id', (req, res, next) => {
     res.status(200).send(JSON.stringify(employees[employeeIndex], null, 2))
   }
 })
-//todo app.delete /api/employees/:id
+
 app.delete('/api/employees/:id', (req, res, next) => {
   const id = req.params.id
   const employeeIndex = employees.findIndex(

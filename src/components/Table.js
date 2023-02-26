@@ -1,4 +1,5 @@
 import React from 'react'
+import { BsTrash, BsPencil } from 'react-icons/bs'
 
 export const Table = ({ employees, handleDelete }) => {
   const headers = [
@@ -10,7 +11,8 @@ export const Table = ({ employees, handleDelete }) => {
     'City',
     'Branch',
     'Assigned',
-    'Remove',
+    'Edit',
+    'Del',
   ]
 
   return (
@@ -36,12 +38,17 @@ export const Table = ({ employees, handleDelete }) => {
             <td>{employee.branch}</td>
             <td>{employee.assigned ? 'Yes' : 'No'}</td>
             <td>
+              <button className='edit' type='button'>
+                <BsPencil />
+              </button>
+            </td>
+            <td>
               <button
                 className='delete'
                 type='button'
                 onClick={() => handleDelete(employee.id)}
               >
-                Del
+                <BsTrash />
               </button>
             </td>
           </tr>

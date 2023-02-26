@@ -25,7 +25,7 @@ const App = () => {
     }
     request()
   }, [])
-  const handleSubmit = async (e) => {
+  const handleAddSubmit = async (e) => {
     e.preventDefault()
 
     const res = await fetch(apiUrl, {
@@ -70,10 +70,11 @@ const App = () => {
       <h1>Plexxis Employees</h1>
 
       <Table employees={employees} handleDelete={handleDelete}></Table>
+      <h2>Add a new employee</h2>
       <Form
         newEmployee={newEmployee}
         handleFormChange={handleFormChange}
-        handleSubmit={handleSubmit}
+        handleAddSubmit={handleAddSubmit}
       ></Form>
     </div>
   )
