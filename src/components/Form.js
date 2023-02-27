@@ -12,7 +12,7 @@ const handleFormChange = (e, updateEmployee, setUpdateEmployee) => {
 
 export const Form = ({ employee, setEmployee, handleSubmit }) => {
   return (
-    <form onSubmit={(e) => handleSubmit(e, employee['id'])}>
+    <form onSubmit={(e) => handleSubmit(e, employee.id)}>
       <label>
         Name:
         <input

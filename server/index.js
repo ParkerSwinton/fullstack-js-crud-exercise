@@ -22,7 +22,7 @@ app.get('/api/employees', (req, res, next) => {
 })
 
 app.get('/api/employees/:id', (req, res, next) => {
-  const id = Number(req.params.id)
+  const id = parseInt(req.params.id)
   const foundEmployee = employees.find((employee) => employee.id === id)
 
   if (foundEmployee) {
@@ -61,7 +61,7 @@ app.post('/api/employees', (req, res, next) => {
 
 app.put('/api/employees/:id', (req, res, next) => {
   const body = req.body
-  const id = Number(req.params.id)
+  const id = parseInt(req.params.id)
   const employeeIndex = employees.findIndex((employee) => employee.id === id)
 
   // Verifies the id exists and isn't being modified.
@@ -77,7 +77,7 @@ app.put('/api/employees/:id', (req, res, next) => {
 })
 
 app.delete('/api/employees/:id', (req, res, next) => {
-  const id = Number(req.params.id)
+  const id = parseInt(req.params.id)
   const employeeIndex = employees.findIndex((employee) => employee.id === id)
 
   if (employeeIndex === -1) {

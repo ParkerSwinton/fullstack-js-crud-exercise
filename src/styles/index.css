@@ -5,10 +5,3 @@ body {
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
   background: rgb(207, 207, 207);
 }
-
-h1 {
-  font-size: 32px;
-  font-weight: 600;
-  padding: 0 0 20px;
-  color: rgb(32, 32, 32);
-}

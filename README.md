@@ -1,22 +1,44 @@
 # Plexxis Interview Exercise
 
+## My Solution
+
+I created a simple Plexxis Employee CRUD application using React for the front end, and Express for the back end. I also used morgan for logging the server activities and body-parser for parsing requests. My focus was on making the app incredibly intuitive and functional. I completed all of the basic requirements and numbers 2 and 3 of the bonus objectives as well. I will briefly outline how I completed the requirements underneath the requirements themselves.
+
 ## Requirements
 
 Create a simple but impressive (looks good, works well, has intuitive design, etc.) CRUD application that can do the following:
 
-1. Retrieve employees from a REST API
-2. Display the employees in a React application
-3. Has UI mechanisms for creating and deleting employees
-4. Has API endpoints for creating and deleting employees
-5. Edit your version of the `README.md` file to explain to us what things you did, where you focussed your effort, etc.
+1. &#x2713; Retrieve employees from a REST API
+
+- GET request using a useEffect hook with an empty dependency array.
+
+2. &#x2713; Display the employees in a React application
+
+- Displayed the employees using a table which includes edit and delete buttons for individual rows.
+
+3. &#x2713; Has UI mechanisms for creating and deleting employees
+
+- Add new employee form at the bottom of the page and individual delete buttons for employees already in the table. POST and DELETE requests as necessary (on form submission or delete button click respectively). Form requires all fields to be completed before submitting.
+
+4. &#x2713; Has API endpoints for creating and deleting employees
+
+- API endpoints at /api/employees and /api/employees/:id respectively. POST validates the request before creating the employee to ensure correct usage. DELETE ensures the employee exists prior to removal.
+
+5. &#x2713; Edit your version of the `README.md` file to explain to us what things you did, where you focussed your effort, etc.
 
 _Read over the `Bonus` objectives and consider tackling those items as well_
 
 ## Bonus (Highly Encouraged)
 
 1. Use a relational database to store the data (SQLite, MariaDB, Postgres)
-2. UI mechanisms to edit/update employee data
-3. Add API endpoint to update employee data
+2. &#x2713; UI mechanisms to edit/update employee data
+
+- Similar to the delete button, there is an edit button with each employee entry. When clicked it opens a dialog box with a form auto-filled with the employee's current information to be edited/updated as desired. PUT request on form submission, dialog box can be canceled as well with no request.
+
+3. &#x2713; Add API endpoint to update employee data
+
+- API endpoint at /api/employees/:id to update employee data. It checks for existence of the employee and ensures the id matches before updating the data and returning the updated employee.
+
 4. Use [React Table](https://react-table.js.org)
 
 ## Other Technologies

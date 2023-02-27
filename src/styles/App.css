@@ -4,38 +4,37 @@
   align-items: center;
   justify-content: center;
 }
-
 h1 {
-  font-size: 28px;
-  padding: 20px;
-  margin: 0;
+  font-size: 32px;
+  font-weight: 600;
 }
-
+h1, h2 {
+  color: rgb(61, 61, 61);
+}
 table {
   color: rgb(32, 32, 32);
-  background: white;
-  border: 1px solid grey;
+  background: rgb(255, 255, 255);
+  border: 1px solid rgb(128, 128, 128);
   font-size: 18px;
   border-collapse: collapse;
   margin: 50px 0;
 }
 table thead th {
-  color: #777;
+  color: rgb(119, 119, 119);
   background: rgba(0,0,0,.1);
 }
 table th,
 table td {
   padding: 15px;
-  border: 1px solid lightgrey;
+  border: 1px solid rgb(211, 211, 211);
 }
-
 form {
   display: flex;
   flex-wrap: wrap;
 }
 label {
   margin: 10px;
-  color: #777;
+  color: rgb(119, 119, 119);
   font-weight: bold;
   display: flex;
   flex-direction: column;
@@ -44,24 +43,24 @@ label {
 }
 input[type=text] {
   font-size: 18px;
-  padding:10px;
-  border:0;
-  box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+  padding: 10px;
+  border: 0;
+  box-shadow: 0 0 15px 4px rgba(0,0,0,0.06);
 }
 input[type=checkbox] {
   appearance: none;
   width: 20px;
   height: 20px;
-  background: white;
+  background: rgb(255, 255, 255);
   margin: auto;
-  border: 1px solid lightgrey;
+  border: 1px solid rgb(211, 211, 211);
   box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
 }
 input[type=checkbox]:hover {
   cursor: pointer;
 }
 input[type=checkbox]:checked {
-  background-color: limegreen;
+  background-color: rgb(50, 205, 50);
 }
 dialog {
   padding: 15px;
@@ -69,7 +68,7 @@ dialog {
 .delete, .edit, .add{
   appearance: none;
   border: none;
-  background: white;
+  background: rgb(255, 255, 255);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -90,17 +89,47 @@ dialog {
 }
 .edit:hover {
   box-shadow: 0 0 3px 3px rgba(255, 165, 0, 0.1);
-  color: orange;
+  color: rgb(255, 165, 0);
 }
 .delete:hover {
   box-shadow:0 0 3px 3px rgba(255, 0, 0, 0.1);
-  color: red;
+  color: rgb(255, 0, 0);
 }
 .add:hover {
   box-shadow: 0 0 3px 3px rgba(0, 128, 0, 0.1);
-  color: green;
+  color: rgb(0, 128, 0);
 }
 .edit:hover,.delete:hover,.add:hover{
   transform: scale(1.1);
   cursor: pointer;
+}
+@media only screen and (max-width: 1020px) {
+  table th,
+  table td {
+    padding: 5px;
+    font-size: 12px;
+  }
+
+}
+@media only screen and (max-width: 600px) {
+  table th,
+  table td {
+    padding: 2px;
+    font-size: 10px;
+  }
+  .edit, .delete {
+    height: 25px;
+    width: 25px;
+  }
+}
+@media only screen and (max-width: 450px) {
+  table th,
+  table td {
+    padding: 0;
+    font-size: 8px;
+  }
+  .edit, .delete {
+    height: 20px;
+    width: 20px;
+  }
 }

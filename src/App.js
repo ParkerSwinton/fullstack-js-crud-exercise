@@ -5,25 +5,20 @@ import { Table } from './components/Table'
 import { Form } from './components/Form'
 import { Modal } from './components/Modal'
 
+const apiUrl = 'http://localhost:8080/api/employees'
+const blankEmployee = {
+  name: '',
+  profession: '',
+  color: '',
+  city: '',
+  branch: '',
+  assigned: false,
+}
+
 const App = () => {
-  const apiUrl = 'http://localhost:8080/api/employees'
   const [employees, setEmployees] = useState([])
-  const [newEmployee, setNewEmployee] = useState({
-    name: '',
-    profession: '',
-    color: '',
-    city: '',
-    branch: '',
-    assigned: false,
-  })
-  const [editEmployee, setEditEmployee] = useState({
-    name: '',
-    profession: '',
-    color: '',
-    city: '',
-    branch: '',
-    assigned: false,
-  })
+  const [newEmployee, setNewEmployee] = useState({ ...blankEmployee })
+  const [editEmployee, setEditEmployee] = useState({ ...blankEmployee })
 
   useEffect(() => {
     const request = async () => {
@@ -35,7 +30,6 @@ const App = () => {
   }, [])
   const handleAddSubmit = async (e, id) => {
     e.preventDefault()
-
     const res = await fetch(apiUrl, {
       method: 'POST',
       headers: {
@@ -48,14 +42,7 @@ const App = () => {
     setEmployees((currentEmployees) => {
       return [...currentEmployees, addNewEmployee]
     })
-    setNewEmployee({
-      name: '',
-      profession: '',
-      color: '',
-      city: '',
-      branch: '',
-      assigned: false,
-    })
+    setNewEmployee({ ...blankEmployee })
   }
   const handleEditSubmit = async (e, id) => {
     e.preventDefault()
@@ -66,20 +53,17 @@ const App = () => {
       },
       body: JSON.stringify(editEmployee),
     })
-    const editedEmployee = await res.json()
-    const index = employees.findIndex((employee) => employee.id === id)
-    const editedEmployees = employees
-    editedEmployees[index] = editedEmployee
+    try {
+      const editedEmployee = await res.json()
+      const index = employees.findIndex((employee) => employee.id === id)
+      const editedEmployees = employees
+      editedEmployees[index] = editedEmployee
 
-    setEmployees(editedEmployees)
-    setEditEmployee({
-      name: '',
-      profession: '',
-      color: '',
-      city: '',
-      branch: '',
-      assigned: false,
-    })
+      setEmployees(editedEmployees)
+      setEditEmployee({ ...blankEmployee })
+    } catch (err) {
+      console.log('Employee no longer exists.', err)
+    }
     document.getElementById('modal').close()
   }
   const handleDelete = async (id) => {
@@ -89,14 +73,13 @@ const App = () => {
     })
   }
   const handleEdit = (id) => {
-    const tempEmployee = employees.find((employee) => employee.id === id)
-    setEditEmployee(tempEmployee)
+    const currentEmployee = employees.find((employee) => employee.id === id)
+    setEditEmployee(currentEmployee)
     document.getElementById('modal').showModal()
   }
   return (
     <div className='App'>
       <h1>Plexxis Employees</h1>
-
       <Table
         employees={employees}
         handleDelete={handleDelete}
